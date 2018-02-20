@@ -2,9 +2,12 @@ package com.suzhi.simplecalculator;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import static android.content.ContentValues.TAG;
 
 public class MainActivity extends Activity {
 
@@ -15,10 +18,9 @@ public class MainActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.d(TAG,"calculator-log: Inside onCreate Method");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        //Mapping Button objects with corresponding Views
         button_0 = findViewById(R.id.button_0);
         button_1 = findViewById(R.id.button_1);
         button_2 = findViewById(R.id.button_2);
@@ -29,13 +31,13 @@ public class MainActivity extends Activity {
         button_7 = findViewById(R.id.button_7);
         button_8 = findViewById(R.id.button_8);
         button_9 = findViewById(R.id.button_9);
+        button_clear = findViewById(R.id.button_clear);
         button_add = findViewById(R.id.button_add);
         button_sub = findViewById(R.id.button_sub);
         button_mul = findViewById(R.id.button_mul);
         button_div = findViewById(R.id.button_div);
         button_dot = findViewById(R.id.button_dot);
         button_equals = findViewById(R.id.button_equals);
-
         //Mapping TextView object with corresponding View
         tv_display = findViewById(R.id.tv_display);
 
@@ -43,13 +45,23 @@ public class MainActivity extends Activity {
         button_0.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Log.d(TAG,"calculator-log: Button '0' is clicked");
+                if (operation != null && operation.equals("Equals")) {
+                    tv_display.setText("");
+                    operation = null;
+                }
                 tv_display.append("0");
             }
         });
 
-        button_1.setOnClickListener(new View.OnClickListener() {
+       button_1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Log.d(TAG,"calculator-log: Button '1' is clicked");
+                if (operation != null && operation.equals("Equals")) {
+                    tv_display.setText("");
+                    operation = null;
+                }
                 tv_display.append("1");
             }
         });
@@ -57,6 +69,11 @@ public class MainActivity extends Activity {
         button_2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Log.d(TAG,"calculator-log: Button '2' is clicked");
+                if (operation != null && operation.equals("Equals")) {
+                    tv_display.setText("");
+                    operation = null;
+                }
                 tv_display.append("2");
             }
         });
@@ -64,6 +81,11 @@ public class MainActivity extends Activity {
         button_3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Log.d(TAG,"calculator-log: Button '3' is clicked");
+                if (operation != null && operation.equals("Equals")) {
+                    tv_display.setText("");
+                    operation = null;
+                }
                 tv_display.append("3");
             }
         });
@@ -71,6 +93,11 @@ public class MainActivity extends Activity {
         button_4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Log.d(TAG,"calculator-log: Button '4' is clicked");
+                if (operation != null && operation.equals("Equals")) {
+                    tv_display.setText("");
+                    operation = null;
+                }
                 tv_display.append("4");
             }
         });
@@ -78,6 +105,11 @@ public class MainActivity extends Activity {
         button_5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Log.d(TAG,"calculator-log: Button '5' is clicked");
+                if (operation != null && operation.equals("Equals")) {
+                    tv_display.setText("");
+                    operation = null;
+                }
                 tv_display.append("5");
             }
         });
@@ -85,6 +117,11 @@ public class MainActivity extends Activity {
         button_6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Log.d(TAG,"calculator-log: Button '6' is clicked");
+                if (operation != null && operation.equals("Equals")) {
+                    tv_display.setText("");
+                    operation = null;
+                }
                 tv_display.append("6");
             }
         });
@@ -92,6 +129,11 @@ public class MainActivity extends Activity {
         button_7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Log.d(TAG,"calculator-log: Button '7' is clicked");
+                if (operation != null && operation.equals("Equals")) {
+                    tv_display.setText("");
+                    operation = null;
+                }
                 tv_display.append("7");
             }
         });
@@ -99,6 +141,11 @@ public class MainActivity extends Activity {
         button_8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Log.d(TAG,"calculator-log: Button '8' is clicked");
+                if (operation != null && operation.equals("Equals")) {
+                    tv_display.setText("");
+                    operation = null;
+                }
                 tv_display.append("8");
             }
         });
@@ -106,6 +153,11 @@ public class MainActivity extends Activity {
         button_9.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Log.d(TAG,"calculator-log: Button '9' is clicked");
+                if (operation != null && operation.equals("Equals")) {
+                    tv_display.setText("");
+                    operation = null;
+                }
                 tv_display.append("9");
             }
         });
@@ -113,6 +165,11 @@ public class MainActivity extends Activity {
         button_dot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Log.d(TAG,"calculator-log: Button '.' is clicked");
+                if (operation != null && operation.equals("Equals")) {
+                    tv_display.setText("");
+                    operation = null;
+                }
                 tv_display.append(".");
             }
         });
@@ -121,16 +178,24 @@ public class MainActivity extends Activity {
         button_clear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Log.d(TAG,"calculator-log: Button 'CLEAR' is clicked");
                 tv_display.setText("0");
+
+                //Reinitializing the previousString variable if "CLEAR" button is clicked
+                previousString = null;
+                operation = null;
+                num1 = 0;
+                num2 = 0;
             }
         });
 
         button_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                num1 += Integer.parseInt((String)tv_display.getText());
+                Log.d(TAG,"calculator-log: Button '+' is clicked");
+                num1 += Integer.parseInt(tv_display.getText().toString());
+                previousString = tv_display.getText().toString();
                 tv_display.append("+");
-                previousString = (String)tv_display.getText();
                 operation = "Add";
             }
         });
@@ -138,9 +203,10 @@ public class MainActivity extends Activity {
         button_sub.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                num1 += Integer.parseInt((String)tv_display.getText());
+                Log.d(TAG,"calculator-log: Button '-' is clicked");
+                num1 += Integer.parseInt(tv_display.getText().toString());
+                previousString = tv_display.getText().toString();
                 tv_display.append("-");
-                previousString = (String)tv_display.getText();
                 operation = "Sub";
             }
         });
@@ -148,9 +214,10 @@ public class MainActivity extends Activity {
         button_mul.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                num1 += Integer.parseInt((String)tv_display.getText());
+                Log.d(TAG,"calculator-log: Button '*' is clicked");
+                num1 += Integer.parseInt(tv_display.getText().toString());
+                previousString = tv_display.getText().toString();
                 tv_display.append("*");
-                previousString = (String)tv_display.getText();
                 operation = "Mul";
             }
         });
@@ -158,9 +225,10 @@ public class MainActivity extends Activity {
         button_div.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                num1 += Integer.parseInt((String)tv_display.getText());
+                Log.d(TAG,"calculator-log: Button '/' is clicked");
+                num1 += Integer.parseInt(tv_display.getText().toString());
+                previousString = tv_display.getText().toString();
                 tv_display.append("/");
-                previousString = (String)tv_display.getText();
                 operation = "Div";
             }
         });
@@ -168,24 +236,30 @@ public class MainActivity extends Activity {
         button_equals.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                num2 = Integer.parseInt(((String)tv_display.getText()).substring(previousString.length(), ((String)tv_display.getText()).length()));
-                if (operation != null && operation.equals("Add")){
-                    result = num1 + num2;
-                } else if (operation != null && operation.equals("Sub")){
-                    result = num1 - num2;
-                } else if (operation != null && operation.equals("Mul")){
-                    result = num1 * num2;
-                } else if (operation != null && operation.equals("Div")){
-                    result = num1 / num2;
-                }
-                tv_display.setText(result);
+                Log.d(TAG,"calculator-log: Button '=' is clicked");
+                if (operation != null) {
+                    num2 = Integer.parseInt(tv_display.getText().toString().substring(previousString.length() + 1, tv_display.getText().toString().length()));
+                    if (operation.equals("Add")){
+                        result = num1 + num2;
+                    } else if (operation.equals("Sub")){
+                        result = num1 - num2;
+                    } else if (operation.equals("Mul")){
+                        result = num1 * num2;
+                    } else if (operation.equals("Div")){
+                        result = num1 / num2;
+                    }
+                    Log.d(TAG,"calculator-log: result: " + result);
+                    tv_display.setText(String.valueOf(result));
 
-                //Reinitializing the previousString variable after calculation is completed
-                previousString = null;
-                operation = null;
-                num1 = 0;
-                num2 = 0;
+                    //Reinitializing the previousString variable after calculation is completed
+                    previousString = null;
+                    operation = "Equals";
+                    num1 = 0;
+                    num2 = 0;
+                }
             }
         });
+
+
     }
 }

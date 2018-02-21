@@ -14,7 +14,8 @@ public class MainActivity extends Activity {
     Button button_0, button_1, button_2, button_3, button_4, button_5, button_6, button_7, button_8, button_9, button_dot, button_add, button_sub, button_mul, button_div, button_clear, button_equals;
     TextView tv_display;
     String previousString, operation;
-    int num1, num2, result;
+    double num1, num2, result;
+    boolean flag = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,11 +47,21 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View view) {
                 Log.d(TAG,"calculator-log: Button '0' is clicked");
+                //Log.d(TAG,"calculator-log: operation: " + operation);
+                //Log.d(TAG,"calculator-log: tv_display.getText: '" + tv_display.getText() + "'");
+                //Log.d(TAG,"calculator-log: tv_display.getText - true or false: " + tv_display.getText().equals("0"));
+
                 if (operation != null && operation.equals("Equals")) {
                     tv_display.setText("");
                     operation = null;
                 }
-                tv_display.append("0");
+                if (!flag) {
+                    tv_display.setText("0");
+                    flag = true;
+                } else {
+                    tv_display.append("0");
+                }
+
             }
         });
 
@@ -62,7 +73,12 @@ public class MainActivity extends Activity {
                     tv_display.setText("");
                     operation = null;
                 }
-                tv_display.append("1");
+                if (!flag) {
+                    tv_display.setText("1");
+                    flag = true;
+                } else {
+                    tv_display.append("1");
+                }
             }
         });
 
@@ -74,7 +90,12 @@ public class MainActivity extends Activity {
                     tv_display.setText("");
                     operation = null;
                 }
-                tv_display.append("2");
+                if (!flag) {
+                    tv_display.setText("2");
+                    flag = true;
+                } else {
+                    tv_display.append("2");
+                }
             }
         });
 
@@ -86,7 +107,12 @@ public class MainActivity extends Activity {
                     tv_display.setText("");
                     operation = null;
                 }
-                tv_display.append("3");
+                if (!flag) {
+                    tv_display.setText("3");
+                    flag = true;
+                } else {
+                    tv_display.append("3");
+                }
             }
         });
 
@@ -98,7 +124,12 @@ public class MainActivity extends Activity {
                     tv_display.setText("");
                     operation = null;
                 }
-                tv_display.append("4");
+                if (!flag) {
+                    tv_display.setText("4");
+                    flag = true;
+                } else {
+                    tv_display.append("4");
+                }
             }
         });
 
@@ -110,7 +141,12 @@ public class MainActivity extends Activity {
                     tv_display.setText("");
                     operation = null;
                 }
-                tv_display.append("5");
+                if (!flag) {
+                    tv_display.setText("5");
+                    flag = true;
+                } else {
+                    tv_display.append("5");
+                }
             }
         });
 
@@ -122,7 +158,12 @@ public class MainActivity extends Activity {
                     tv_display.setText("");
                     operation = null;
                 }
-                tv_display.append("6");
+                if (!flag) {
+                    tv_display.setText("6");
+                    flag = true;
+                } else {
+                    tv_display.append("6");
+                }
             }
         });
 
@@ -134,7 +175,12 @@ public class MainActivity extends Activity {
                     tv_display.setText("");
                     operation = null;
                 }
-                tv_display.append("7");
+                if (!flag) {
+                    tv_display.setText("7");
+                    flag = true;
+                } else {
+                    tv_display.append("7");
+                }
             }
         });
 
@@ -146,7 +192,12 @@ public class MainActivity extends Activity {
                     tv_display.setText("");
                     operation = null;
                 }
-                tv_display.append("8");
+                if (!flag) {
+                    tv_display.setText("8");
+                    flag = true;
+                } else {
+                    tv_display.append("8");
+                }
             }
         });
 
@@ -158,7 +209,12 @@ public class MainActivity extends Activity {
                     tv_display.setText("");
                     operation = null;
                 }
-                tv_display.append("9");
+                if (!flag) {
+                    tv_display.setText("9");
+                    flag = true;
+                } else {
+                    tv_display.append("9");
+                }
             }
         });
 
@@ -170,7 +226,12 @@ public class MainActivity extends Activity {
                     tv_display.setText("");
                     operation = null;
                 }
-                tv_display.append(".");
+                if (!flag) {
+                    tv_display.setText(".");
+                    flag = true;
+                } else {
+                    tv_display.append(".");
+                }
             }
         });
 
@@ -186,6 +247,7 @@ public class MainActivity extends Activity {
                 operation = null;
                 num1 = 0;
                 num2 = 0;
+                flag = false;
             }
         });
 
@@ -193,7 +255,7 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View view) {
                 Log.d(TAG,"calculator-log: Button '+' is clicked");
-                num1 += Integer.parseInt(tv_display.getText().toString());
+                num1 += Double.parseDouble(tv_display.getText().toString());
                 previousString = tv_display.getText().toString();
                 tv_display.append("+");
                 operation = "Add";
@@ -204,7 +266,7 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View view) {
                 Log.d(TAG,"calculator-log: Button '-' is clicked");
-                num1 += Integer.parseInt(tv_display.getText().toString());
+                num1 += Double.parseDouble(tv_display.getText().toString());
                 previousString = tv_display.getText().toString();
                 tv_display.append("-");
                 operation = "Sub";
@@ -215,7 +277,7 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View view) {
                 Log.d(TAG,"calculator-log: Button '*' is clicked");
-                num1 += Integer.parseInt(tv_display.getText().toString());
+                num1 += Double.parseDouble(tv_display.getText().toString());
                 previousString = tv_display.getText().toString();
                 tv_display.append("*");
                 operation = "Mul";
@@ -226,7 +288,7 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View view) {
                 Log.d(TAG,"calculator-log: Button '/' is clicked");
-                num1 += Integer.parseInt(tv_display.getText().toString());
+                num1 += Double.parseDouble(tv_display.getText().toString());
                 previousString = tv_display.getText().toString();
                 tv_display.append("/");
                 operation = "Div";
@@ -237,8 +299,8 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View view) {
                 Log.d(TAG,"calculator-log: Button '=' is clicked");
-                if (operation != null) {
-                    num2 = Integer.parseInt(tv_display.getText().toString().substring(previousString.length() + 1, tv_display.getText().toString().length()));
+                if (operation != null && !operation.equals("Equals")) {
+                    num2 = Double.parseDouble(tv_display.getText().toString().substring(previousString.length() + 1, tv_display.getText().toString().length()));
                     if (operation.equals("Add")){
                         result = num1 + num2;
                     } else if (operation.equals("Sub")){

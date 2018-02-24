@@ -311,7 +311,12 @@ public class MainActivity extends Activity {
                         result = num1 / num2;
                     }
                     Log.d(TAG,"calculator-log: result: " + result);
-                    tv_display.setText(String.valueOf(result));
+                    String resultStr = String.valueOf(result).substring(String.valueOf(result).indexOf(".")+1);
+                    String finalResult = String.valueOf(result);
+                    if(resultStr != null && resultStr.equals("0")){
+                      finalResult = String.valueOf(result).substring(0,String.valueOf(result).indexOf("."));
+                    }
+                    tv_display.setText(finalResult);
 
                     //Reinitializing the previousString variable after calculation is completed
                     previousString = null;
